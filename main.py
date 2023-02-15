@@ -56,11 +56,3 @@ def register():
 
 	insert_values("users", fields, values) 
 	print("Usuário cadastrado com sucesso!")
-
-
-register()
-
-users = get_entity_records_by_table_name("users")
-
-for user in users:
-	print(user)
