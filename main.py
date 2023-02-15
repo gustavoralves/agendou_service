@@ -1,5 +1,7 @@
 import sqlite3
 
+from crypto import encrypt_string
+
 def get_entity_records_by_table_name(table_name):
 	conn = sqlite3.connect("agendou.sqlite")
 	cursor = conn.cursor()
@@ -49,10 +51,32 @@ def register():
 	name = f"'{name}'"
 	cpf = f"'{cpf}'"
 	email = f"'{email}'"
-	password = f"'{password}'"
+	password = f"'{encrypt_string(password)}'"
 
 	fields = ["ID", "name", "CPF", "email", "password"]
 	values = [id, name, cpf, email, password]
 
 	insert_values("users", fields, values) 
 	print("Usuário cadastrado com sucesso!")
+
+def login():
+	print("Login de Usuário")
+	email = input("Insira o Email:")
+	password = input("Insira senha:")
+	conn = sqlite3.connect("agendou.sqlite")
+	cursor = conn.cursor()
+	cursor.execute(f"""
+		SELECT email,password FROM users WHERE email = "{email}";
+		""")
+	result = []
+	for row in cursor.fetchall():
+		result.append(row)
+
+	try:
+		if result[0][1] == encrypt_string(password):
+			print("Login realizado com Sucesso!")
+
+		else:
+			print("Email ou Senha Inválido!")
+	except:
+		print("Email ou Senha invalido!")
