@@ -1,4 +1,4 @@
-from main import register
+from functions_agendou import register_cli
 
-register ()
+register_cli()
 

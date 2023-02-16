@@ -1,3 +1,3 @@
-from main import login
+from main import login_cli
 
-login()
+login_cli()

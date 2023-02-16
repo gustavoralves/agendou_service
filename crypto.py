@@ -1,7 +1,6 @@
-import hashlib
+from passlib.context import CryptContext
 
-def encrypt_string(hash_string):
-	sha_signature = \
-		hashlib.sha256(hash_string.encode()).hexdigest()
-	return sha_signature
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
+def get_password_hashed(password):
+	return pwd_context.hash(password)
