@@ -1,7 +1,7 @@
-PRAGMA foreign_keys=OFF;
+PRAGMA foreign_keys=ON;
 BEGIN TRANSACTION;
 CREATE TABLE IF NOT EXISTS "facilities" (
- ID TEXT PRIMARY KEY,
+ ID INTEGER PRIMARY KEY AUTOINCREMENT,
  name TEXT NOT NULL,
  category TEXT,
  address TEXT,
@@ -53,6 +53,6 @@ password TEXT NOT NULL,
 phone TEXT NOT NULL,
 whatsapp BOOLEAN,
 provider_id BOOLEAN,
-disable BOOLEAN);
+disabled BOOLEAN);
 DELETE FROM sqlite_sequence;
 COMMIT;

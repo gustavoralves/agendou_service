@@ -36,7 +36,6 @@ def insert_values(table_name, fields, values):
 def register_cli():
 	print("Cadastro de usuário")
 	name = input("Insira o nome do usuário: ")
-	id = input("Insira o id do usuário: ")
 	cpf = input("Insira o cpf do usuário: ")
 	email = input("Insira o email do usuário: ")
 	password = input("Insira o password do usuário: ")
@@ -47,29 +46,28 @@ def register_cli():
 		password = input("Insira o password do usuário: ")
 		password_check = input("Insira o password do usuário novamente: ")
 
-	id = f"'{id}'"
 	name = f"'{name}'"
 	cpf = f"'{cpf}'"
 	email = f"'{email}'"
 	password = f"'{get_password_hashed(password)}'"
 
-	fields = ["ID", "name", "CPF", "email", "password"]
-	values = [id, name, cpf, email, password]
+	fields = ["name", "CPF", "email", "password"]
+	values = [name, cpf, email, password]
 
 	insert_values("users", fields, values) 
 	print("Usuário cadastrado com sucesso!")
 
-def register(id,name,cpf,email,password):
+def register(name,cpf,phone,email,password):
 
-	id = f"'{id}'"
 	name = f"'{name}'"
 	cpf = f"'{cpf}'"
 	email = f"'{email}'"
+	phone = f"'{phone}'"
 	password = f"'{get_password_hashed(password)}'"
 	disabled = "0"
 
-	fields = ["ID", "name", "CPF", "email", "password", "disabled"]
-	values = [id, name, cpf, email, password, disabled]
+	fields = ["name", "CPF", "phone", "email", "password", "disabled"]
+	values = [name, cpf, phone, email, password, disabled]
 
 	insert_values("users", fields, values)
 

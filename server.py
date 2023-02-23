@@ -39,7 +39,6 @@ class TokenData(BaseModel):
 
 
 class User(BaseModel):
-    ID: str
     name: str
     email: str
     CPF: str
@@ -156,9 +155,9 @@ async def read_users_me(current_user: User = Depends(get_current_active_user)):
 async def register_endpoint(user_registered: User):
     try:
         register(
-            user_registered.ID,
             user_registered.name,
             user_registered.CPF,
+            user_registered.phone,
             user_registered.email,
             user_registered.password
         )
