@@ -86,7 +86,7 @@ def login_cli():
 		result.append(row)
 
 	try:
-		if result[0][1] == encrypt_string(password):
+		if result[0][1] == get_password_hashed(password):
 			print("Login realizado com Sucesso!")
 
 		else:
@@ -109,7 +109,7 @@ def login_service(email, password):
 		for row in cursor.fetchall():
 			result.append(row)
 
-		if result[0][1] == encrypt_string(password):
+		if result[0][1] == get_password_hashed(password):
 			return "Login realizado com Sucesso!"
 		else:
 			return "Email ou Senha Inválido!"
